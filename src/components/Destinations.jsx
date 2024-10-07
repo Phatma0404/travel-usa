@@ -12,7 +12,7 @@ const Destinations = () => {
         {/* <span>Example Tagline Text</span> */}
       </div>
 
-      <div className="grid grid-rows-none md:grid-cols-5 py-4 gap-2 md:gap-4">
+      <div name="newyork" className="grid grid-rows-none md:grid-cols-5 py-4 gap-2 md:gap-4">
         <img
           className="w-full h-full object-cover col-span-2 md:col-span-3 row-span-2"
           src="https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

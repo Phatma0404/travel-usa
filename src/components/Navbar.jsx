@@ -10,6 +10,7 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
+import { Link } from "react-scroll";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [logo, setLogo] = useState(false);
@@ -18,18 +19,32 @@ const Navbar = () => {
     setNav(!nav);
     setLogo(!logo);
   };
+
+  // styles
+
+  const listStyle = {
+    cursor: "pointer",
+  };
   return (
     <div className="flex w-full justify-between items-center h-20 px-4 absolute z-10 text-white">
       <div>
-        <h1>New York</h1>
+        <a href="/">New York</a>
       </div>
 
       <ul className="hidden md:flex">
-        <li>Home</li>
-        <li>New York</li>
-        <li>Travel</li>
-        <li>States View</li>
-        <li>History</li>
+        <li style={listStyle}>Home</li>
+        <li style={listStyle}>
+          <Link to="newyork" smooth={true} duration={500}>
+            New York
+          </Link>
+        </li>
+        <li style={listStyle}>
+          <Link to="travel" smooth={true} duration={500}>
+            Travel
+          </Link>
+        </li>
+        <li style={listStyle}>States View</li>
+        <li style={listStyle}>History</li>
       </ul>
 
       <div className="hidden md:flex">

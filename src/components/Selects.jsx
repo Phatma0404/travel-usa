@@ -2,7 +2,9 @@ import React from "react";
 import SelectsCard from "./SelectsCard";
 const Selects = () => {
   return (
-    <div className="max-w-[1240px] mx-auto px-4 py-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+   <div name="travel">
+    <h1 className="text-center uppercase">Also Travel</h1>
+     <div className="max-w-[1240px] mx-auto px-4 py-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <SelectsCard
         bg="https://i.pinimg.com/564x/ec/7b/5c/ec7b5c0672d6240e36685628258a3b11.jpg"
         text="California"
@@ -28,6 +30,7 @@ const Selects = () => {
         text="Nevada"
       />
     </div>
+   </div>
   );
 };
 
