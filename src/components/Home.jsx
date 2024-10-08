@@ -5,6 +5,7 @@ import Hero from './Hero'
 import Selects from './Selects'
 // import Carousel from './Carousel'
 import ImageSlider from './ImageSlider'
+import ContactForm from './Contact'
 
 const Home = () => {
   return (
@@ -15,6 +16,8 @@ const Home = () => {
       {/* <Search /> */}
       <ImageSlider />
       <Selects />
+
+      <ContactForm />
       {/* <Carousel /> */}
     </div>
 

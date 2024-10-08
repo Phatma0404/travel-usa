@@ -1,6 +1,6 @@
 import React from "react";
 import newyork from "../assets/newyork.mp4";
-import { AiOutlineSearch } from "react-icons/ai";
+import "../assets/style/learnmorebtn.css";
 const Hero = () => {
   return (
     <div className="w-full h-screen relative">
@@ -16,7 +16,7 @@ const Hero = () => {
         <div className="absolute top-[-10%] w-full h-full flex flex-col justify-center text-center text-white p-4">
           <h1>New York City</h1>
           <h2 className="py-3">The land of deep dreams</h2>
-          <form className="flex justify-between items-center max-w-[700px] mx-auto w-full border p-1 rounded-md text-black bg-gray-100/90">
+          {/* <form className="flex justify-between items-center max-w-[700px] mx-auto w-full border p-1 rounded-md text-black bg-gray-100/90">
             <div>
               <input
                 className="bg-transparent w-[200px] xs:w-[400px] font-[Poppins] focus:outline-none px-10"
@@ -34,7 +34,13 @@ const Hero = () => {
                 />
               </button>
             </div>
-          </form>
+          </form> */}
+
+          <div className="btn-holder">
+            <button className="btn btn-1 hover-filled-slide-left">
+              <span>hover me</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

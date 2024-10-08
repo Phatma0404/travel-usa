@@ -11,6 +11,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { Link } from "react-scroll";
+import NYC from "../assets/img/nycity.png"
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [logo, setLogo] = useState(false);
@@ -24,11 +25,12 @@ const Navbar = () => {
 
   const listStyle = {
     cursor: "pointer",
+    fontSize: "20px"
   };
   return (
     <div className="flex w-full justify-between items-center h-20 px-4 absolute z-10 text-white">
       <div>
-        <a href="/">New York</a>
+        <img src={NYC} alt="" width={200} height={200} />
       </div>
 
       <ul className="hidden md:flex">
@@ -43,8 +45,11 @@ const Navbar = () => {
             Travel
           </Link>
         </li>
-        <li style={listStyle}>States View</li>
-        <li style={listStyle}>History</li>
+        <li style={listStyle}>Gallery</li>
+        <li style={listStyle}>
+          <Link to="contact" smooth={true} duration={500}>
+            Contact
+          </Link></li>
       </ul>
 
       <div className="hidden md:flex">
@@ -64,11 +69,10 @@ const Navbar = () => {
       {/* Mobile menu dropdown*/}
       <div
         onClick={handleNav}
-        className={`${
-          nav
+        className={`${nav
             ? "absolute text-black left-0 top-0 w-full bg-gray-100/90 px-4 py-7 flex flex-col"
             : "absolute left-[-100%]"
-        }`}
+          }`}
       >
         <ul>
           <h1 className="border-b">BEACHES.</h1>
