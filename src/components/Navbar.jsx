@@ -29,9 +29,9 @@ const Navbar = () => {
   };
   return (
     <div className="flex w-full justify-between items-center h-20 px-4 absolute z-10 text-white">
-      <div>
+      <a href="/">
         <img src={NYC} alt="" width={200} height={200} />
-      </div>
+      </a>
 
       <ul className="hidden md:flex">
         <li style={listStyle}>Home</li>
