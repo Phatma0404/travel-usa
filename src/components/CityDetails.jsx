@@ -8,7 +8,7 @@ const CityDetails = () => {
 
   return (
     <div className="pt-20 text-center">
-      <div className="hero-image ">
+      {/* <div className="hero-image ">
         <div
           className="hero-text bg-center bg-cover bg-no-repeat h-[500px]"
           style={{
@@ -41,13 +41,15 @@ const CityDetails = () => {
             <div class="w-full h-full">
               <img src={cityCard.bg} alt={cityCard.text} />
             </div>
-            {/* <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 lg:gap-8 gap-6 lg:mt-8 md:mt-6 mt-4">
+            <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 lg:gap-8 gap-6 lg:mt-8 md:mt-6 mt-4">
                         <img src="https://i.ibb.co/4Jrp5TB/pexels-max-vakhtbovych-6782370-1.png" class="w-full" alt="kitchen" />
                         <img src="https://i.ibb.co/0Jv3FSy/pexels-max-vakhtbovych-6436799-1-1.png" class="w-full" alt="sitting room" />
-                    </div> */}
+                    </div>
           </div>
         </div>
-      </div>
+      </div> */}
+
+
     </div>
   );
 };

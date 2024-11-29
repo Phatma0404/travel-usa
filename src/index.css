@@ -33,7 +33,7 @@
   h3 {
     @apply text-xl font-bold;
   }
-/* 
+  /* 
   button {
     @apply p-3 border bg-gradient-to-r from-[var(--primary-dark)] to-[var(--primary-light)] text-white rounded;
   } */
@@ -258,4 +258,49 @@
 
 .containers:hover .button {
   opacity: 1;
+}
+
+@layer utilities {
+  @keyframes slideInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-25%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(25%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .animate-slideInDown {
+    animation: slideInDown 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-slideInUp {
+    animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
 }

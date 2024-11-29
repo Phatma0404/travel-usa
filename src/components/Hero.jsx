@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import newyork from "../assets/newyork.mp4";
 import "../assets/style/learnmorebtn.css";
+import { Link } from "react-scroll";
 const Hero = () => {
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+
+  useEffect(() => {
+    const title = titleRef.current;
+    const subtitle = subtitleRef.current;
+
+    title.classList.add("hidden");
+    subtitle.classList.add("hidden");
+
+    setTimeout(() => {
+      title.classList.remove("hidden");
+      title.classList.add("animate-slideInDown");
+    }, 1500);
+
+    setTimeout(() => {
+      subtitle.classList.remove("hidden");
+      subtitle.classList.add("animate-slideInUp");
+    }, 1500);
+  }, []);
   return (
     <div className="w-full h-screen relative">
       <video
@@ -14,8 +35,32 @@ const Hero = () => {
 
       <div className="absolute w-full h-full top-0 left-0 bg-gray-900/30">
         <div className="absolute top-[-10%] w-full h-full flex flex-col justify-center text-center text-white p-4">
-          <h1>New York City</h1>
-          <h2 className="py-3">The land of deep dreams</h2>
+          <header className="animate-fadeIn">
+            <h1>
+              <div
+                ref={titleRef}
+                className="font-bold"
+                data-animation="slideInDown"
+              >
+                Welcome to dreamland New York
+              </div>
+
+              <div
+                className="btn-holder"
+                ref={subtitleRef}
+                data-animation="slideInUp"
+              >
+                <Link
+                  to="newyork"
+                  smooth={true}
+                  duration={500}
+                  className="btn btn-1 hover-filled-slide-left"
+                >
+                  <span>Let's start</span>
+                </Link>
+              </div>
+            </h1>
+          </header>
           {/* <form className="flex justify-between items-center max-w-[700px] mx-auto w-full border p-1 rounded-md text-black bg-gray-100/90">
             <div>
               <input
@@ -35,12 +80,6 @@ const Hero = () => {
               </button>
             </div>
           </form> */}
-
-          <div className="btn-holder">
-            <button className="btn btn-1 hover-filled-slide-left">
-              <span>hover me</span>
-            </button>
-          </div>
         </div>
       </div>
     </div>

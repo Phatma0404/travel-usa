@@ -70,17 +70,19 @@ const Navbar = () => {
       <div
         onClick={handleNav}
         className={`${nav
-            ? "absolute text-black left-0 top-0 w-full bg-gray-100/90 px-4 py-7 flex flex-col"
-            : "absolute left-[-100%]"
+          ? "absolute text-black left-0 top-0 w-full bg-gray-100/90 px-4 py-7 flex flex-col"
+          : "absolute left-[-100%]"
           }`}
       >
         <ul>
-          <h1 className="border-b">BEACHES.</h1>
+          <a href="/">
+            <img src={NYC} alt="" width={200} height={200} />
+          </a>
           <li className="border-b">Home</li>
-          <li className="border-b">Destinations</li>
+          <li className="border-b">New York</li>
           <li className="border-b">Travel</li>
-          <li className="border-b">View</li>
-          <li className="border-b">Book</li>
+          <li className="border-b">Gallery</li>
+          <li className="border-b">Contact</li>
           <div className="flex flex-col">
             <button className="my-4">Search</button>
             <button>Account</button>
