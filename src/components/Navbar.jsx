@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
@@ -11,92 +11,199 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { Link } from "react-scroll";
-import NYC from "../assets/img/nycity.png"
+import { useNavigate, useLocation } from "react-router-dom";
+import NYC from "../assets/img/nycity.png";
+
+const navLinks = [
+  { label: "Home", to: "home" },
+  { label: "New York", to: "newyork" },
+  { label: "Travel", to: "travel" },
+  { label: "Gallery", to: "gallery" },
+  { label: "Contact", to: "contact" },
+];
+
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const [logo, setLogo] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
-  const handleNav = () => {
-    setNav(!nav);
-    setLogo(!logo);
-  };
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  // styles
+  const handleNav = () => setNav(!nav);
 
-  const listStyle = {
-    cursor: "pointer",
-    fontSize: "20px"
-  };
   return (
-    <div className="flex w-full justify-between items-center h-20 px-4 absolute z-10 text-white">
-      <a href="/">
-        <img src={NYC} alt="" width={200} height={200} />
-      </a>
-
-      <ul className="hidden md:flex">
-        <li style={listStyle}>Home</li>
-        <li style={listStyle}>
-          <Link to="newyork" smooth={true} duration={500}>
-            New York
-          </Link>
-        </li>
-        <li style={listStyle}>
-          <Link to="travel" smooth={true} duration={500}>
-            Travel
-          </Link>
-        </li>
-        <li style={listStyle}>Gallery</li>
-        <li style={listStyle}>
-          <Link to="contact" smooth={true} duration={500}>
-            Contact
-          </Link></li>
-      </ul>
-
-      <div className="hidden md:flex">
-        <BiSearch className="mr-2" size={20} />
-        <BsPerson size={20} />
-      </div>
-
-      {/* menu icon */}
-      <div className="md:hidden z-10" onClick={handleNav}>
-        {nav ? (
-          <AiOutlineClose className="text-black" size={20} />
-        ) : (
-          <HiOutlineMenuAlt4 size={20} />
-        )}
-      </div>
-
-      {/* Mobile menu dropdown*/}
-      <div
-        onClick={handleNav}
-        className={`${nav
-          ? "absolute text-black left-0 top-0 w-full bg-gray-100/90 px-4 py-7 flex flex-col"
-          : "absolute left-[-100%]"
-          }`}
+    <>
+      {/* Main Navbar */}
+      <nav
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          scrolled || !isHome
+            ? "bg-black/80 backdrop-blur-md shadow-lg h-16"
+            : "bg-transparent h-20"
+        }`}
       >
-        <ul>
+        <div className="flex w-full justify-between items-center h-full px-6">
+          {/* Logo */}
           <a href="/">
-            <img src={NYC} alt="" width={200} height={200} />
+            <img src={NYC} alt="NYC Logo" width={180} height={180} />
           </a>
-          <li className="border-b">Home</li>
-          <li className="border-b">New York</li>
-          <li className="border-b">Travel</li>
-          <li className="border-b">Gallery</li>
-          <li className="border-b">Contact</li>
-          <div className="flex flex-col">
-            <button className="my-4">Search</button>
-            <button>Account</button>
+
+          {/* Desktop Nav Links */}
+          <ul className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                {isHome ? (
+                  <Link
+                    to={link.to}
+                    smooth={true}
+                    duration={500}
+                    className="relative text-white text-sm font-medium tracking-wide cursor-pointer group"
+                  >
+                    {link.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full" />
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => navigate("/")}
+                    className="relative text-white text-sm font-medium tracking-wide cursor-pointer group"
+                  >
+                    {link.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full" />
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          {/* Desktop Social Icons + Action Icons */}
+          <div className="hidden md:flex items-center gap-5 text-white">
+            <div className="flex items-center gap-3 border-r border-white/30 pr-5">
+              <FaFacebook
+                size={15}
+                className="cursor-pointer hover:text-blue-400 transition-colors"
+                onClick={() =>
+                  window.open("https://www.facebook.com/nycitytravel", "_blank")
+                }
+              />
+              <FaInstagram
+                size={15}
+                className="cursor-pointer hover:text-pink-400 transition-colors"
+                onClick={() =>
+                  window.open(
+                    "https://www.instagram.com/nycitytravel",
+                    "_blank",
+                  )
+                }
+              />
+              <FaTwitter
+                size={15}
+                className="cursor-pointer hover:text-sky-400 transition-colors"
+                onClick={() =>
+                  window.open(
+                    "https://www.instagram.com/nycitytravel",
+                    "_blank",
+                  )
+                }
+              />
+              <FaYoutube
+                size={15}
+                className="cursor-pointer hover:text-red-500 transition-colors"
+                onClick={() =>
+                  window.open("https://www.youtube.com/nycitytravel", "_blank")
+                }
+              />
+            </div>
+            <BiSearch
+              size={18}
+              className="cursor-pointer hover:text-blue-300 transition-colors"
+            />
+            <BsPerson
+              size={18}
+              className="cursor-pointer hover:text-blue-300 transition-colors"
+            />
           </div>
-          <div className="flex justify-between my-6">
-            <FaFacebook className="icon" />
-            <FaTwitter className="icon" />
-            <FaYoutube className="icon" />
-            <FaPinterest className="icon" />
-            <FaInstagram className="icon" />
-          </div>
+
+          {/* Mobile Hamburger */}
+          <button
+            className="md:hidden z-50 text-white"
+            onClick={handleNav}
+            aria-label="Toggle menu"
+          >
+            {nav ? (
+              <AiOutlineClose size={22} />
+            ) : (
+              <HiOutlineMenuAlt4 size={22} />
+            )}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-center items-center transition-all duration-500 ${
+          nav
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <ul className="flex flex-col items-center gap-6 text-white text-2xl font-semibold">
+          {navLinks.map((link) => (
+            <li key={link.to}>
+              {isHome ? (
+                <Link
+                  to={link.to}
+                  smooth={true}
+                  duration={500}
+                  onClick={handleNav}
+                  className="hover:text-blue-400 transition-colors cursor-pointer tracking-wide"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  onClick={() => {
+                    navigate("/");
+                    handleNav();
+                  }}
+                  className="hover:text-blue-400 transition-colors tracking-wide"
+                >
+                  {link.label}
+                </button>
+              )}
+            </li>
+          ))}
         </ul>
+
+        {/* Social Icons */}
+        <div className="flex gap-6 mt-12 text-white/60">
+          <FaFacebook
+            size={20}
+            className="cursor-pointer hover:text-blue-400 transition-colors"
+          />
+          <FaTwitter
+            size={20}
+            className="cursor-pointer hover:text-sky-400 transition-colors"
+          />
+          <FaYoutube
+            size={20}
+            className="cursor-pointer hover:text-red-500 transition-colors"
+          />
+          <FaPinterest
+            size={20}
+            className="cursor-pointer hover:text-red-400 transition-colors"
+          />
+          <FaInstagram
+            size={20}
+            className="cursor-pointer hover:text-pink-400 transition-colors"
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
