@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { cards } from "../cards";
 import { AiOutlineLeft, AiOutlineRight, AiOutlineClose } from "react-icons/ai";
@@ -120,7 +120,7 @@ const galleryData = {
   Chicago: [
     "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1629050680302-92f1de7d7e10?w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1477414956199-7dafc86a4f1a?q=80&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1523978591478-c753949ff840?w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1572947650440-e8a97ef053b2?w=800&auto=format&fit=crop",
@@ -131,13 +131,13 @@ const galleryData = {
     "https://images.unsplash.com/photo-1552084117-56a987666449?w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1562541455-8f83c2ae8de7?w=800&auto=format&fit=crop",
+    "https://plus.unsplash.com/premium_photo-1709316697730-09692ae12f55?q=80&auto=format&fit=crop",
   ],
   Washington: [
     "https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1617581629397-a72507c3de9e?w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1568748688359-b1b49c0c5cce?w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1596688056149-f649dc280cc8?q=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1610809027249-86c649feacd5?w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800&auto=format&fit=crop",
   ],
@@ -205,7 +205,11 @@ const CityDetails = () => {
   const attractions = attractionsData[text] || [];
   const info = infoData[text] || {};
   const gallery = galleryData[text] || [];
-  const [lightbox, setLightbox] = useState(null); // seçili şəklin indexi
+  const [lightbox, setLightbox] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const prevImg = () =>
     setLightbox((i) => (i - 1 + gallery.length) % gallery.length);
