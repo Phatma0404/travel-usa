@@ -6,8 +6,6 @@ import {
   FaMediumM,
   FaFacebook,
   FaInstagram,
-  FaTwitter,
-  FaYoutube,
 } from "react-icons/fa";
 import { BiSolidPlaneAlt } from "react-icons/bi";
 
@@ -20,20 +18,20 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { icon: <FaFacebook size={15} />, hover: "hover:bg-blue-600" },
+  { icon: <FaFacebook size={15} />, hover: "hover:bg-brand-600" },
   {
     icon: <FaInstagram size={15} />,
-    hover: "hover:bg-pink-500",
+    hover: "hover:bg-accent-500",
     href: "https://www.instagram.com",
   },
-  { icon: <FaLinkedinIn size={15} />, hover: "hover:bg-blue-500" },
-  { icon: <FaMediumM size={15} />, hover: "hover:bg-gray-600" },
-  { icon: <FaGithub size={15} />, hover: "hover:bg-gray-500" },
+  { icon: <FaLinkedinIn size={15} />, hover: "hover:bg-brand-500" },
+  { icon: <FaMediumM size={15} />, hover: "hover:bg-slate-600" },
+  { icon: <FaGithub size={15} />, hover: "hover:bg-slate-500" },
 ];
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-950 text-white pt-16 pb-8 border-t border-white/10">
+    <footer className="bg-slate-900 dark:bg-slate-950 text-white pt-16 pb-8 border-t border-white/10">
       <div className="max-w-6xl mx-auto px-6">
         {/* Top section */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-10 pb-12 border-b border-white/10">
@@ -43,8 +41,10 @@ const Footer = () => {
               <img src={NYC} alt="NYC Logo" width={160} />
             </a>
             <p className="text-white/50 text-sm leading-relaxed">
-              Discover the magic of New York City — iconic landmarks, vibrant
-              culture, and unforgettable adventures await.
+              Discover the United States — starting with New York City.
+            </p>
+            <p className="text-white/30 text-xs uppercase tracking-widest font-semibold mt-1">
+              NYC Travel
             </p>
             {/* Social icons */}
             <div className="flex gap-2 mt-2">
@@ -73,7 +73,7 @@ const Footer = () => {
                     to={link.to}
                     smooth={true}
                     duration={500}
-                    className="text-white/60 hover:text-blue-400 transition-colors cursor-pointer text-sm"
+                    className="text-white/60 hover:text-brand-400 transition-colors cursor-pointer text-sm"
                   >
                     {link.label}
                   </Link>
@@ -100,13 +100,13 @@ const Footer = () => {
               Plan your trip
             </h4>
             <p className="text-white/50 text-sm mb-4">
-              Ready to explore the city that never sleeps?
+              Ready to start your American journey?
             </p>
             <Link
               to="contact"
               smooth={true}
               duration={500}
-              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 transition-colors text-white text-sm font-semibold px-5 py-2.5 rounded-full cursor-pointer"
+              className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 transition-colors text-white text-sm font-semibold px-5 py-2.5 rounded-full cursor-pointer"
             >
               <BiSolidPlaneAlt size={16} />
               Get in touch
@@ -118,7 +118,7 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 pt-8 text-white/30 text-xs">
           <span>© 2026 NYCity Travel. All rights reserved.</span>
           <span className="flex items-center gap-1">
-            Designed with <span className="text-red-400 mx-1">♥</span> for New
+            Designed with <span className="text-danger-400 mx-1">♥</span> for New
             York
           </span>
         </div>
