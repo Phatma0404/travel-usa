@@ -36,8 +36,8 @@ const HeroSlider = () => {
 
       <div className="absolute inset-0 flex items-center justify-between px-10 md:px-20">
         <div className="text-white max-w-md z-10">
-          <p className="text-xs uppercase tracking-widest text-blue-400 font-semibold mb-3">
-            Featured Destination
+          <p className="text-xs uppercase tracking-widest text-brand-400 font-semibold mb-3">
+            Featured Destinations
           </p>
           <h1
             key={active}
@@ -45,12 +45,15 @@ const HeroSlider = () => {
           >
             {current.text}
           </h1>
-          <p className="text-white/70 text-sm md:text-base leading-relaxed mb-8 max-w-sm">
+          <p className="text-white/70 text-sm md:text-base leading-relaxed mb-2 max-w-sm">
             {current.description}
+          </p>
+          <p className="text-brand-300 text-xs uppercase tracking-widest font-semibold">
+            Discover the United States — starting with New York City
           </p>
           <button
             onClick={() => navigate("/city-details/" + current.text)}
-            className="bg-blue-500 hover:bg-blue-600 transition-colors text-white font-semibold px-8 py-3 rounded-full shadow-lg tracking-wide"
+            className="bg-brand-500 hover:bg-brand-600 transition-colors text-white font-semibold px-8 py-3 rounded-full shadow-lg tracking-wide"
           >
             Explore
           </button>
@@ -119,16 +122,28 @@ const HeroSlider = () => {
         </button>
       </div>
 
-      <div className="absolute bottom-10 left-10 md:left-20 flex gap-2 z-10">
-        {cards.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setActive(i)}
-            className={`rounded-full transition-all duration-300 ${
-              i === active ? "w-6 h-2 bg-white" : "w-2 h-2 bg-white/40"
-            }`}
-          />
-        ))}
+      <div className="absolute bottom-10 left-10 md:left-20 flex items-center gap-4 z-10">
+        <div className="flex gap-2">
+          {cards.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className={`rounded-full transition-all duration-300 ${
+                i === active ? "w-6 h-2 bg-brand-400" : "w-2 h-2 bg-white/30"
+              }`}
+            />
+          ))}
+        </div>
+        <span className="text-white/40 text-xs font-mono">
+          <span className="text-white/80 font-bold">{String(active + 1).padStart(2, "0")}</span>
+          {" / "}
+          {String(cards.length).padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* Auto-play progress bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/10 z-10">
+        <div key={`p-${active}`} className="h-full bg-brand-400 animate-progress" />
       </div>
     </section>
   );

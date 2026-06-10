@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import "../assets/style/ImageSlider.css";
 import { Typewriter } from "react-simple-typewriter";
+import { useInView } from "../hooks/useScrollAnimation";
 
 const AutoPauseVideo = () => {
   const ref = useRef(null);
@@ -79,15 +79,24 @@ const slides = [
 ];
 
 const ImageSlider = () => {
+  const [headerRef, headerInView] = useInView();
+
   return (
-    <div className="bg-gray-50" id="newyork">
-      <section className="pt-20 pb-10 text-center">
-        <p className="text-sm uppercase tracking-widest text-blue-500 font-semibold mb-2">
-          Explore the city
+    <div className="bg-slate-50 dark:bg-slate-900" id="gallery">
+      <section
+        ref={headerRef}
+        className={`pt-20 pb-10 text-center transition-all duration-700 ${
+          headerInView
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-8"
+        }`}
+      >
+        <p className="text-sm uppercase tracking-widest text-brand-500 font-semibold mb-2">
+          Featured City · New York
         </p>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-800 dark:text-white">
           NEW YORK CITY &nbsp;/&nbsp;
-          <span className="text-green-700">
+          <span className="text-brand-500">
             <Typewriter
               words={[
                 "Times Square",
@@ -126,7 +135,7 @@ const ImageSlider = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               {/* Text */}
               <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                <p className="text-xs uppercase tracking-widest text-blue-300 mb-1">
+                <p className="text-xs uppercase tracking-widest text-brand-300 mb-1">
                   New York City
                 </p>
                 <h3 className="text-white font-bold text-lg leading-snug mb-1">
@@ -145,73 +154,73 @@ const ImageSlider = () => {
         </div>
       </div>
 
-      <section className="border-t border-gray-200 bg-white">
+      <section className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
         <div className="container px-5 py-20 mx-auto">
           <div className="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
-              className="inline-block w-8 h-8 text-blue-400 mb-6"
+              className="inline-block w-8 h-8 text-brand-400 mb-6"
               viewBox="0 0 975.036 975.036"
             >
               <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
             </svg>
-            <p className="leading-relaxed text-lg text-gray-600">
-              New York City is more than a destination — it's an experience.
+            <p className="leading-relaxed text-lg text-slate-600 dark:text-slate-300">
+              New York City is more than a destination — it&apos;s an experience.
               From the towering skyscrapers of Manhattan to the artistic streets
               of Brooklyn, every corner of this city tells a story. Whether
-              you're drawn by the culture, the cuisine, or the energy, New York
+              you&apos;re drawn by the culture, the cuisine, or the energy, New York
               will leave a mark on your soul.
             </p>
-            <span className="inline-block h-1 w-10 rounded bg-blue-500 mt-8 mb-4"></span>
-            <h2 className="text-gray-900 font-semibold tracking-wider text-sm uppercase">
+            <span className="inline-block h-1 w-10 rounded bg-brand-500 mt-8 mb-4"></span>
+            <h2 className="text-slate-900 dark:text-white font-semibold tracking-wider text-sm uppercase">
               New York City
             </h2>
-            <p className="text-gray-400 text-sm">The City That Never Sleeps</p>
+            <p className="text-slate-400 dark:text-slate-500 text-sm">The City That Never Sleeps</p>
           </div>
         </div>
       </section>
 
       {/* YouTube Video — Yan-yana layout */}
-      <section className="border-t border-gray-200 bg-gray-900">
+      <section className="border-t border-slate-200 bg-slate-900">
         <div className="max-w-6xl mx-auto px-6 py-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-white">
-              <p className="text-sm uppercase tracking-widest text-blue-400 font-semibold mb-3">
+              <p className="text-sm uppercase tracking-widest text-brand-400 font-semibold mb-3">
                 Watch
               </p>
               <h3 className="text-4xl font-extrabold mb-4 leading-tight">
                 New York City <br />
-                <span className="text-blue-400">in Motion</span>
+                <span className="text-brand-400">in Motion</span>
               </h3>
-              <div className="w-12 h-1 bg-blue-400 rounded-full mb-6" />
+              <div className="w-12 h-1 bg-brand-400 rounded-full mb-6" />
               <p className="text-white/60 text-sm leading-relaxed mb-10">
                 Experience the energy of New York City like never before. From
                 the towering skyline to the bustling streets, this cinematic
-                journey captures the soul of one of the world's greatest cities.
+                journey captures the soul of one of the world&apos;s greatest cities.
               </p>
 
               <div className="grid grid-cols-2 gap-6">
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-                  <p className="text-3xl font-extrabold text-blue-400 mb-1">
+                  <p className="text-3xl font-extrabold text-brand-400 mb-1">
                     8M+
                   </p>
                   <p className="text-white/50 text-sm">Residents</p>
                 </div>
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-                  <p className="text-3xl font-extrabold text-blue-400 mb-1">
+                  <p className="text-3xl font-extrabold text-brand-400 mb-1">
                     800+
                   </p>
                   <p className="text-white/50 text-sm">Landmarks</p>
                 </div>
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-                  <p className="text-3xl font-extrabold text-blue-400 mb-1">
+                  <p className="text-3xl font-extrabold text-brand-400 mb-1">
                     66M
                   </p>
                   <p className="text-white/50 text-sm">Annual Visitors</p>
                 </div>
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-                  <p className="text-3xl font-extrabold text-blue-400 mb-1">
+                  <p className="text-3xl font-extrabold text-brand-400 mb-1">
                     302
                   </p>
                   <p className="text-white/50 text-sm">km² Area</p>

@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import newyork from "../assets/newyork.mp4";
-import "../assets/style/learnmorebtn.css";
 import { Link } from "react-scroll";
-
+import { useParallax } from "../hooks/useScrollAnimation";
 
 const Hero = () => {
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const badgeRef = useRef(null);
+  const videoOffset = useParallax(0.25);
+  const textOffset = useParallax(-0.15);
 
   useEffect(() => {
     const title = titleRef.current;
@@ -33,28 +34,31 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen relative overflow-hidden">
-      {/* Video */}
+    <div className="w-full h-screen relative overflow-hidden" id="home">
+      {/* Video — parallax: scroll-a uyğun yavaş hərəkət */}
       <video
-        className="w-full h-full object-cover scale-105"
+        className="w-full h-full object-cover scale-110 will-change-transform"
         src={newyork}
         autoPlay
         loop
         muted
+        style={{ transform: `translateY(${videoOffset}px) scale(1.1)` }}
       />
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
 
-      {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-
+      {/* Content — parallax: əks istiqamətdə */}
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4 will-change-transform"
+        style={{ transform: `translateY(${textOffset}px)` }}
+      >
         {/* Badge */}
         <div
           ref={badgeRef}
           className="mb-6 inline-flex items-center gap-2 border border-white/30 bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm tracking-widest uppercase"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block" />
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-400 inline-block" />
           Discover the world
         </div>
 
@@ -63,13 +67,13 @@ const Hero = () => {
           ref={titleRef}
           className="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight drop-shadow-xl mb-4"
         >
-          New <span className="text-blue-400">York</span> City
+          New <span className="text-brand-400">York</span> City
         </h1>
 
         {/* Subtitle */}
         <div ref={subtitleRef} className="flex flex-col items-center gap-6">
           <p className="text-lg md:text-xl text-white/80 max-w-xl">
-            The city that never sleeps — explore iconic landmarks, culture, and unforgettable moments.
+            Discover the United States — starting with New York City
           </p>
 
           {/* Buttons */}
@@ -78,7 +82,7 @@ const Hero = () => {
               to="newyork"
               smooth={true}
               duration={500}
-              className="cursor-pointer bg-blue-500 hover:bg-blue-600 transition-colors px-8 py-3 rounded-full font-semibold text-white tracking-wide shadow-lg"
+              className="cursor-pointer bg-brand-500 hover:bg-brand-600 transition-colors px-8 py-3 rounded-full font-semibold text-white tracking-wide shadow-lg"
             >
               Explore Now
             </Link>

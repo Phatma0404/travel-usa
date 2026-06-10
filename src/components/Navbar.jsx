@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
@@ -13,6 +13,7 @@ import {
 import { Link } from "react-scroll";
 import { useNavigate, useLocation } from "react-router-dom";
 import NYC from "../assets/img/nycity.png";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Home", to: "home" },
@@ -65,7 +66,7 @@ const Navbar = () => {
                     className="relative text-white text-sm font-medium tracking-wide cursor-pointer group"
                   >
                     {link.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-400 transition-all duration-300 group-hover:w-full" />
                   </Link>
                 ) : (
                   <button
@@ -73,7 +74,7 @@ const Navbar = () => {
                     className="relative text-white text-sm font-medium tracking-wide cursor-pointer group"
                   >
                     {link.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-400 transition-all duration-300 group-hover:w-full" />
                   </button>
                 )}
               </li>
@@ -85,14 +86,14 @@ const Navbar = () => {
             <div className="flex items-center gap-3 border-r border-white/30 pr-5">
               <FaFacebook
                 size={15}
-                className="cursor-pointer hover:text-blue-400 transition-colors"
+                className="cursor-pointer hover:text-brand-400 transition-colors"
                 onClick={() =>
                   window.open("https://www.facebook.com/nycitytravel", "_blank")
                 }
               />
               <FaInstagram
                 size={15}
-                className="cursor-pointer hover:text-pink-400 transition-colors"
+                className="cursor-pointer hover:text-accent-400 transition-colors"
                 onClick={() =>
                   window.open(
                     "https://www.instagram.com/nycitytravel",
@@ -102,7 +103,7 @@ const Navbar = () => {
               />
               <FaTwitter
                 size={15}
-                className="cursor-pointer hover:text-sky-400 transition-colors"
+                className="cursor-pointer hover:text-accent-400 transition-colors"
                 onClick={() =>
                   window.open(
                     "https://www.instagram.com/nycitytravel",
@@ -112,7 +113,7 @@ const Navbar = () => {
               />
               <FaYoutube
                 size={15}
-                className="cursor-pointer hover:text-red-500 transition-colors"
+                className="cursor-pointer hover:text-danger-500 transition-colors"
                 onClick={() =>
                   window.open("https://www.youtube.com/nycitytravel", "_blank")
                 }
@@ -120,12 +121,13 @@ const Navbar = () => {
             </div>
             <BiSearch
               size={18}
-              className="cursor-pointer hover:text-blue-300 transition-colors"
+              className="cursor-pointer hover:text-brand-300 transition-colors"
             />
             <BsPerson
               size={18}
-              className="cursor-pointer hover:text-blue-300 transition-colors"
+              className="cursor-pointer hover:text-brand-300 transition-colors"
             />
+            <ThemeToggle />
           </div>
 
           {/* Mobile Hamburger */}
@@ -160,7 +162,7 @@ const Navbar = () => {
                   smooth={true}
                   duration={500}
                   onClick={handleNav}
-                  className="hover:text-blue-400 transition-colors cursor-pointer tracking-wide"
+                  className="hover:text-brand-400 transition-colors cursor-pointer tracking-wide"
                 >
                   {link.label}
                 </Link>
@@ -170,7 +172,7 @@ const Navbar = () => {
                     navigate("/");
                     handleNav();
                   }}
-                  className="hover:text-blue-400 transition-colors tracking-wide"
+                  className="hover:text-brand-400 transition-colors tracking-wide"
                 >
                   {link.label}
                 </button>
@@ -180,14 +182,17 @@ const Navbar = () => {
         </ul>
 
         {/* Social Icons */}
-        <div className="flex gap-6 mt-12 text-white/60">
+        <div className="mt-10">
+          <ThemeToggle />
+        </div>
+        <div className="flex gap-6 mt-6 text-white/60">
           <FaFacebook
             size={20}
-            className="cursor-pointer hover:text-blue-400 transition-colors"
+            className="cursor-pointer hover:text-brand-400 transition-colors"
           />
           <FaTwitter
             size={20}
-            className="cursor-pointer hover:text-sky-400 transition-colors"
+            className="cursor-pointer hover:text-accent-400 transition-colors"
           />
           <FaYoutube
             size={20}
@@ -195,11 +200,11 @@ const Navbar = () => {
           />
           <FaPinterest
             size={20}
-            className="cursor-pointer hover:text-red-400 transition-colors"
+            className="cursor-pointer hover:text-danger-400 transition-colors"
           />
           <FaInstagram
             size={20}
-            className="cursor-pointer hover:text-pink-400 transition-colors"
+            className="cursor-pointer hover:text-accent-400 transition-colors"
           />
         </div>
       </div>

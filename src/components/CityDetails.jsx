@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { cards } from "../cards";
 import { AiOutlineLeft, AiOutlineRight, AiOutlineClose } from "react-icons/ai";
+import { useInView } from "../hooks/useScrollAnimation";
 
 const attractionsData = {
   California: [
@@ -206,6 +207,9 @@ const CityDetails = () => {
   const info = infoData[text] || {};
   const gallery = galleryData[text] || [];
   const [lightbox, setLightbox] = useState(null);
+  const [aboutRef, aboutInView] = useInView();
+  const [galleryRef, galleryInView] = useInView();
+  const [attractionsRef, attractionsInView] = useInView();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -217,11 +221,11 @@ const CityDetails = () => {
 
   if (!cityCard) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-900 text-white">
         <h2 className="text-3xl font-bold mb-4">City not found</h2>
         <button
           onClick={() => navigate("/")}
-          className="bg-blue-500 px-6 py-3 rounded-xl hover:bg-blue-600 transition"
+          className="bg-brand-500 px-6 py-3 rounded-xl hover:bg-brand-600 transition"
         >
           Back to Home
         </button>
@@ -230,7 +234,7 @@ const CityDetails = () => {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen">
       {/* ── 1. HERO ── */}
       <div className="relative h-[90vh] w-full overflow-hidden">
         <img
@@ -240,7 +244,7 @@ const CityDetails = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-          <p className="text-blue-400 text-sm uppercase tracking-widest font-semibold mb-3">
+          <p className="text-brand-400 text-sm uppercase tracking-widest font-semibold mb-3">
             Discover
           </p>
           <h1 className="text-6xl md:text-8xl font-extrabold text-white drop-shadow-lg mb-4">
@@ -249,20 +253,25 @@ const CityDetails = () => {
           <p className="text-white/80 text-lg max-w-xl">
             {cityCard.description}
           </p>
-          <div className="w-16 h-1 bg-blue-400 rounded-full mt-6" />
+          <div className="w-16 h-1 bg-brand-400 rounded-full mt-6" />
         </div>
       </div>
 
       {/* ── 2. HAQQINDA ── */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
+      <section
+        ref={aboutRef}
+        className={`max-w-6xl mx-auto px-6 py-20 transition-all duration-700 ${
+          aboutInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <div className="text-center mb-12">
-          <p className="text-sm uppercase tracking-widest text-blue-500 font-semibold mb-2">
+          <p className="text-sm uppercase tracking-widest text-brand-500 font-semibold mb-2">
             About
           </p>
-          <h2 className="text-4xl font-extrabold text-gray-800">
+          <h2 className="text-4xl font-extrabold text-slate-800 dark:text-white">
             About {cityCard.text}
           </h2>
-          <div className="w-16 h-1 bg-blue-500 mx-auto mt-4 rounded-full" />
+          <div className="w-16 h-1 bg-brand-500 mx-auto mt-4 rounded-full" />
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -274,35 +283,42 @@ const CityDetails = () => {
           ].map((item) => (
             <div
               key={item.label}
-              className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center"
+              className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center"
             >
-              <p className="text-blue-500 text-xs uppercase tracking-widest font-semibold mb-2">
+              <p className="text-brand-500 text-xs uppercase tracking-widest font-semibold mb-2">
                 {item.label}
               </p>
-              <p className="text-gray-800 font-bold text-lg">{item.value}</p>
+              <p className="text-slate-800 dark:text-white font-bold text-lg">{item.value}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── 3. GÖRMƏLİ YERLƏR ── */}
-      <section className="bg-gray-900 py-20">
+      <section
+        ref={attractionsRef}
+        className={`bg-slate-900 py-20 transition-all duration-700 ${
+          attractionsInView
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-10"
+        }`}
+      >
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-widest text-blue-400 font-semibold mb-2">
+            <p className="text-sm uppercase tracking-widest text-brand-400 font-semibold mb-2">
               Must See
             </p>
             <h2 className="text-4xl font-extrabold text-white">
               Top Attractions
             </h2>
-            <div className="w-16 h-1 bg-blue-400 mx-auto mt-4 rounded-full" />
+            <div className="w-16 h-1 bg-brand-400 mx-auto mt-4 rounded-full" />
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {attractions.map((place) => (
               <div
                 key={place.name}
-                className="group rounded-2xl overflow-hidden shadow-lg bg-gray-800"
+                className="group rounded-2xl overflow-hidden shadow-lg bg-slate-800"
               >
                 <div className="relative h-56 overflow-hidden">
                   <img
@@ -325,13 +341,18 @@ const CityDetails = () => {
       </section>
 
       {/* ── 4. QALEREYa ── */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
+      <section
+        ref={galleryRef}
+        className={`max-w-6xl mx-auto px-6 py-20 transition-all duration-700 ${
+          galleryInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <div className="text-center mb-12">
-          <p className="text-sm uppercase tracking-widest text-blue-500 font-semibold mb-2">
+          <p className="text-sm uppercase tracking-widest text-brand-500 font-semibold mb-2">
             Photos
           </p>
-          <h2 className="text-4xl font-extrabold text-gray-800">Gallery</h2>
-          <div className="w-16 h-1 bg-blue-500 mx-auto mt-4 rounded-full" />
+          <h2 className="text-4xl font-extrabold text-slate-800 dark:text-white">Gallery</h2>
+          <div className="w-16 h-1 bg-brand-500 mx-auto mt-4 rounded-full" />
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -359,13 +380,13 @@ const CityDetails = () => {
         <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center px-4">
           <button
             onClick={() => setLightbox(null)}
-            className="absolute top-5 right-5 text-white hover:text-gray-300 transition"
+            className="absolute top-5 right-5 text-white hover:text-slate-300 transition"
           >
             <AiOutlineClose size={30} />
           </button>
           <button
             onClick={prevImg}
-            className="absolute left-5 text-white hover:text-gray-300 transition"
+            className="absolute left-5 text-white hover:text-slate-300 transition"
           >
             <AiOutlineLeft size={36} />
           </button>
@@ -376,7 +397,7 @@ const CityDetails = () => {
           />
           <button
             onClick={nextImg}
-            className="absolute right-5 text-white hover:text-gray-300 transition"
+            className="absolute right-5 text-white hover:text-slate-300 transition"
           >
             <AiOutlineRight size={36} />
           </button>
