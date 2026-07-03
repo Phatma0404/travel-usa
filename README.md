@@ -7,6 +7,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind-3.4-38bdf8?logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5-646cff?logo=vite&logoColor=white)
 
 ---
 
@@ -18,9 +19,19 @@ Built as a portfolio piece to demonstrate clean architecture, accessible UI patt
 
 ---
 
-## 🎬 Live Demo
+## 📸 Screenshots
 
-🔗 **[View Live Demo](#)** _(link after deploy)_
+| Video hero | New York deep-dive |
+| --- | --- |
+| ![Hero section](docs/screenshots/hero.png) | ![New York featured section](docs/screenshots/ny-featured.png) |
+
+| Destinations across the US | Photo gallery |
+| --- | --- |
+| ![Travel destinations grid](docs/screenshots/travel-grid.png) | ![Masonry photo gallery](docs/screenshots/gallery.png) |
+
+| Contact section |
+| --- |
+| ![Contact form](docs/screenshots/contact.png) |
 
 ---
 
@@ -28,11 +39,13 @@ Built as a portfolio piece to demonstrate clean architecture, accessible UI patt
 
 - 🎥 **Full-screen video hero** with staggered fade-in animation
 - 🎠 **Auto-rotating destination carousel** with progress indicator
+- 🗽 **New York deep-dive section** — borough cards, landmark stats, and an embedded video
 - 🖼️ **Masonry photo gallery** with hover effects and typography
 - 🏙️ **Individual city detail pages** with photo lightbox navigation
 - 📧 **EmailJS contact form** with validation and status feedback
+- 🌗 **Light/dark theme toggle** with saved preference and system-theme detection
+- 🎬 **Scroll-triggered reveal animations** via `IntersectionObserver`
 - 📱 **Mobile-first responsive design** — works from 320px to 4K
-- 🌑 **Dark mode aesthetic** with consistent design tokens
 - ⚡ **Smooth scroll navigation** between sections
 
 ---
@@ -48,6 +61,7 @@ Built as a portfolio piece to demonstrate clean architecture, accessible UI patt
 | **Icons** | react-icons |
 | **Forms** | EmailJS |
 | **Linting** | ESLint 9 |
+| **Deployment** | Netlify (`netlify.toml`) |
 
 ---
 
@@ -78,14 +92,22 @@ src/
 ├── components/
 │   ├── common/
 │   │   └── Footer.jsx
-│   ├── Hero.jsx
-│   ├── HeroSlider.jsx
-│   ├── ImageSlider.jsx
-│   ├── Navbar.jsx
-│   ├── Selects.jsx
+│   ├── Hero.jsx              # Full-screen video hero
+│   ├── HeroSlider.jsx        # Auto-rotating destination carousel
+│   ├── NewYorkFeatured.jsx   # NYC boroughs, stats and video section
+│   ├── ImageSlider.jsx       # Masonry photo gallery
+│   ├── Selects.jsx           # "Across the United States" destination grid
 │   ├── SelectsCard.jsx
-│   ├── Contact.jsx
-│   └── CityDetails.jsx
+│   ├── Contact.jsx           # EmailJS contact form
+│   ├── CityDetails.jsx       # Per-city detail page with lightbox
+│   ├── Navbar.jsx
+│   ├── ThemeToggle.jsx       # Light/dark mode switch
+│   ├── Reveal.jsx            # Scroll-reveal wrapper
+│   └── Home.jsx
+├── context/
+│   └── ThemeContext.jsx      # Theme state + localStorage persistence
+├── hooks/
+│   └── useScrollAnimation.js # useInView / useParallax hooks
 ├── assets/
 │   ├── img/
 │   ├── style/
@@ -109,10 +131,10 @@ src/
 
 ```bash
 # Clone the repository
-git clone https://github.com/Phatma2000/nyc-travel.git
+git clone https://github.com/Phatma2000/travel-usa.git
 
 # Navigate into the project
-cd nyc-travel
+cd travel-usa
 
 # Install dependencies
 npm install

@@ -119,14 +119,16 @@ const Navbar = () => {
                 }
               />
             </div>
-            <BiSearch
-              size={18}
-              className="cursor-pointer hover:text-brand-300 transition-colors"
-            />
-            <BsPerson
-              size={18}
-              className="cursor-pointer hover:text-brand-300 transition-colors"
-            />
+            <div className="relative group">
+              <BsPerson
+                size={18}
+                className="cursor-pointer hover:text-brand-300 transition-colors"
+                aria-label="Profile (coming soon)"
+              />
+              <span className="pointer-events-none absolute top-full right-0 mt-2 px-2.5 py-1 rounded-md bg-slate-900 text-white text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                Profile · coming soon
+              </span>
+            </div>
             <ThemeToggle />
           </div>
 
