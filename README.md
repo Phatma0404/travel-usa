@@ -175,8 +175,8 @@ MIT © [Phatma Kiazumova](https://github.com/Phatma2000)
 
 If you'd like to talk about this project or frontend opportunities:
 
-- GitHub: [@Phatma2000](https://github.com/Phatma2000)
-- LinkedIn: [linkedin.com/in/your-profile](#)
+- GitHub: [@Phatma0404](https://github.com/Phatma0404)
+- LinkedIn: [linkedin.com/in/phatma-kiazumova](https://www.linkedin.com/in/phatma-kiazumova/)
 
 ---
 
